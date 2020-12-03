@@ -19,6 +19,7 @@ use App\Models\Pan;
 use App\Models\Bank;
 use App\Models\Mpesa;
 use App\Models\Transaction;
+use App\Models\Support;
 /** mailables */
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Code;
@@ -33,6 +34,23 @@ use Illuminate\Support\Facades\Crypt;
 
 class TransactionController extends Controller
 {
+    public function get_faq()
+    {
+        $f = Support::all();
+        if(is_null($f))
+        {
+            return response([
+                'status' => 200,
+                'message' => "nothing found",
+                'payload' => [],
+            ], 200);
+        }
+        return response([
+            'status' => 200,
+            'message' => "something found",
+            'payload' => $f->toArray(),
+        ], 200);
+    }
     public function addcard(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -271,6 +289,7 @@ class TransactionController extends Controller
             $forex_metadata = $this->internal_forex_meta();
             $phone = $receiver = $paybill_till = $account = '';
             $total_charge = 0;
+            $receiver_named = $this->rand_names();
             $_bill_charge_amount = 0;
             $is_b2b = false;
             if( intval($input['send_option']) == 1 )
@@ -285,6 +304,7 @@ class TransactionController extends Controller
                 $total_charge = $this->find_total_charge($input['amount_usd'], $forex_metadata['bill_charge']);
                 $_bill_charge_amount = $this->bill_charge($forex_metadata['bill_charge'], $total_charge);
                 $is_b2b = true;
+                $receiver_named = $this->rand_names(false);
             }else
             {
                 throw new Exception('Invalid send option. Make sure you select either mpesa or paybill');
@@ -333,7 +353,9 @@ class TransactionController extends Controller
                 'note' => $input['notes'],
                 'bank_ref' => $bank_int_ref,
                 'int_payload_string' => $mpesa_api_res,
-                'ext_payload_string' => $mpesa_api_res
+                'ext_payload_string' => $mpesa_api_res,
+                'receiver_name' => $receiver_named,
+                'status' => true,
             ];
             $mpesa_id = Mpesa::create($new_mpesa)->id;
             if( !strlen($mpesa_id) )
@@ -586,6 +608,18 @@ class TransactionController extends Controller
         $decrypted = trim($decrypted); // you have to trim it according to https://stackoverflow.com/a/29511152
     
         return $decrypted;
-    
+    }
+
+    protected function rand_names($k = true) 
+    {
+        if($k)
+        {
+            $r = [ 'Idd juma', 'Irine Kim', 'Mosses Kuria', 'Alita Skylar', 'Stellah O. Stellah', 'Tina Kuria','Caren Masai'];
+            $i = array_rand($r);
+            return $r[$i];
+        }
+        $r = [ 'KPLC Post Paid', 'Zuku WiFi EA LTD', 'Quickmat Stores - Lavington', 'Naivas Store Nakuru', 'Nairobi Water', 'Makini Realators','Strathmore University'];
+        $i = array_rand($r);
+        return $r[$i];
     }
 }

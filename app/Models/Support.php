@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Support extends Model
 {
     use HasFactory;
     /**
@@ -14,21 +14,9 @@ class Transaction extends Model
      * @var array
      */
     protected $fillable = [
-        'user',
-        'internal_ref',
-        'sup_amount',
-        'inf_amount',
-        'bill_charges',
-        'sup_currency',
-        'inf_currency',
-        'market_rate',
-        'applied_rate',
-        'forex_offset',
-        'sup_forex_charges',
-        'inf_forex_charges',
-        'bank_tran_ref',
-        'mpesa_tran_ref',
-        'status',
+        'category',
+        'question',
+        'answer',
     ];
 
     /**
