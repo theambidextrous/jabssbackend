@@ -26,11 +26,14 @@ use App\Mail\Code;
 use App\Mail\Welcome;
 use App\Mail\FundsDelivered;
 use App\Mail\CardCharged;
+use App\Mail\Receipt;
 /** notification */
 use App\Notifications\ActivateNotification;
 /** AES */
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
+/** MPDF */
+use PDF;
 
 class TransactionController extends Controller
 {
@@ -79,6 +82,42 @@ class TransactionController extends Controller
             'message' => "something found",
             'payload' => $trxns,
         ], 200);
+    }
+    public function send_trxn($id)
+    {
+        try {
+            $user = Auth::user();
+            $mpesa = Mpesa::find($id);
+            $bank_amt = Bank::where('internal_ref', $mpesa->bank_ref)
+                ->first()->amount;
+            $uuuid = (string) Str::uuid() . '.pdf';
+            $payload = [
+                'ref' => $mpesa->internal_ref,
+                'name' => $user->fname,
+                'attachment' => $uuuid,
+                'to' => $mpesa->receiver,
+                'toname' => $mpesa->receiver_name,
+                'kes' => $mpesa->amount,
+                'usd' => $bank_amt,
+                'note' => $mpesa->note,
+                'date' => $mpesa->updated_at,
+            ];
+            PDF::loadView('emails.receipt_attach', [ 'payload' => $payload ], [], [
+                'margin_top' => 10
+            ])->save(storage_path('trxns/'. $uuuid));
+            Mail::to($user->email)->send(new Receipt($payload));
+            return response([
+                'status' => 200,
+                'message' => 'An email containing receipt has been sent!',
+                'payload' => [],
+            ]);
+        } catch ( Exception $e ) {
+            return response([
+                'status' => -211,
+                'message' => $e->getMessage(),
+                'payload' => [],
+            ]);
+        }
     }
     public function addcard(Request $request)
     {

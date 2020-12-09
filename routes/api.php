@@ -31,6 +31,7 @@ Route::middleware(['auth:api', 'verified'])->group( function(){
     Route::prefix('/transactions')->group( function() {
         Route::post('/forex/meta', [TransactionController::class, 'forex_meta']);
         Route::post('/user/trxns', [TransactionController::class, 'get_trxns']);
+        Route::post('/send/trxn/{id}', [TransactionController::class, 'send_trxn']);
         Route::post('/faq/all', [TransactionController::class, 'get_faq']);
         Route::post('/has/card', [TransactionController::class, 'hascard']);
         Route::post('/add/card', [TransactionController::class, 'addcard']);
