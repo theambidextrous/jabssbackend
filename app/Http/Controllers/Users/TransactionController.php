@@ -70,7 +70,8 @@ class TransactionController extends Controller
         $f = $f->toArray();
         $trxns = [];
         foreach( $f as $one ):
-            $one['amtusd'] = Bank::where('internal_ref', $one['bank_ref'])->amount;
+            $one['amtusd'] = Bank::where('internal_ref', $one['bank_ref'])
+            ->first()->amount;
             array_push($trxns, $one);
         endforeach;
         return response([
