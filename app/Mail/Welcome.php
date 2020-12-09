@@ -29,6 +29,6 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->subject('Welcome to JabssApp -  Pay their bills, send them money with love')->view('emails.onboard');
+        return $this->subject('Welcome to Jabss')->view('emails.onboard');
     }
 }

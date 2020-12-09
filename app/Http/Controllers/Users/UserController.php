@@ -489,8 +489,28 @@ class UserController extends Controller
             ], 403); 
         }
     }
+    protected function isExpired($code)
+    {
+        $cnt = Pcode::where('code', $code)
+        ->where('created_at', '<=', Carbon::now()
+        ->subMinutes(5)->toDateTimeString())
+        ->count();
+        if( $cnt > 0 )
+        {
+            return true;
+        }
+        return false;
+    }
     public function verifysignup($code)
     {
+        if( $this->isExpired($code) )
+        {
+            return response([
+                'status' => 201,
+                'message' => "Expired verification code",
+                'errors' => [],
+            ], 403); 
+        }
         $email = Auth::user()->email;
         try{
             $data = ['email' => $email, 'code' => $code ];
@@ -507,6 +527,7 @@ class UserController extends Controller
                     'email_verified_at' => date('Y-m-d H:i:s') 
                 ]);
                 $isValid->save();
+                Mail::to($email)->send(new Welcome(Auth::user()->fname));
                 return response([
                     'status' => 200,
                     'message' => "Account verified!",
@@ -516,7 +537,7 @@ class UserController extends Controller
             }
             return response([
                 'status' => 201,
-                'message' => "You entered Invalid Verification Code " . $code.' for user '.$email,
+                'message' => "Enter a valid verification code",
                 'errors' => [],
             ], 403); 
         }catch( Exception $e){
@@ -530,6 +551,14 @@ class UserController extends Controller
     public function verifyreset($code, $email)
     {
         try{
+            if( $this->isExpired($code) )
+            {
+                return response([
+                    'status' => 201,
+                    'message' => "Expired verification code",
+                    'errors' => [],
+                ], 403); 
+            }
             $data = ['email' => $email, 'code' => $code ];
             $isValid = Pcode::where('email', $email)
                 ->where('code', $code)
@@ -553,7 +582,7 @@ class UserController extends Controller
             }
             return response([
                 'status' => 201,
-                'message' => "You entered Invalid Verification Code " . $code.' for user '.$email,
+                'message' => "Enter a valid verification code",
                 'errors' => [],
             ], 403); 
         }catch( Exception $e){

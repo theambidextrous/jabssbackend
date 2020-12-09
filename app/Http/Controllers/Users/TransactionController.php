@@ -51,6 +51,33 @@ class TransactionController extends Controller
             'payload' => $f->toArray(),
         ], 200);
     }
+    public function get_trxns()
+    {
+        $f = Mpesa::where('user', Auth::user()->id)
+            ->where('status', true)
+            ->skip(0)
+            ->take(500)
+            ->orderBy('id', 'desc');
+        if(is_null($f))
+        {
+            return response([
+                'status' => 200,
+                'message' => "nothing found",
+                'payload' => [],
+            ], 200);
+        }
+        $f = $f->toArray();
+        $trxns = [];
+        foreach( $f as $one ):
+            $one['amtusd'] = Bank::where('internal_ref', $one['bank_ref'])->amount;
+            array_push($trxns, $one);
+        endforeach;
+        return response([
+            'status' => 200,
+            'message' => "something found",
+            'payload' => $trxns,
+        ], 200);
+    }
     public function addcard(Request $request)
     {
         $validator = Validator::make($request->all(), [

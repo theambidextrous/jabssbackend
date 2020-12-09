@@ -143,8 +143,7 @@
     <table style="display:none!important;">
         <tr>
             <td>
-                <div style="overflow:hidden;display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial;maxheight:0px;max-width:0px;opacity:0;">
-                    Welcome to JabssApp. All people use us for their transactions to Kenya
+                <div style="overflow:hidden;display:none;font-size:1px;color:#ffffff;line-height:1px;font-family:Arial;maxheight:0px;max-width:0px;opacity:0;"> We are grateful to have you on board, Jane!!!
                 </div>
             </td>
         </tr>
@@ -195,9 +194,7 @@
                         <td align="center" style="color: #343434; font-size: 34px; font-family: Quicksand, Calibri, sans-serif; font-weight:900;letter-spacing: 3px; line-height: 35px;" class="main-header">
                             <br>
                             <div style="line-height: 35px">
-
-                            Send money, <span style="color: #063fb1;">Pay Bills Directly</span>
-
+                            <span style="color: #063fb1;">Welcome to Jabss</span>
                             </div>
                             <br>
                         </td>
@@ -206,20 +203,11 @@
                         <td align="center" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
 
                             <div style="line-height: 24px">
-                                Pay bills for your loved ones in Africa easily. A better way to send money and pay bills for your loved ones in Africa, Now available on the App Store and Play Store!
+                            We are grateful to have you on board, {{ $payload }} !!!<br>
+                            Now, let us support our families
                             </div>
                             <br><br>
                         </td>
-                    </tr>
-                    <tr>
-
-                        <td align="center" class="section-img">
-                            <a href="" style=" border-style: none !important; display: block; border: 0 !important;"><img src="{{asset('header.png')}}" style="display: block; width: 590px;" width="590" border="0" alt="" /></a>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
                     </tr>
                 </table>
 
@@ -230,31 +218,6 @@
 
     <!-- end section -->
 
-    <!-- ======= divider ======= -->
-
-    <table border="0" width="100%" cellpadding="0" cellspacing="0" bgcolor="ffffff">
-
-        <tr class="hide">
-            <td height="10" style="font-size: 10px; line-height: 10px;">&nbsp;</td>
-        </tr>
-        <tr>
-            <td height="50" style="font-size: 50px; line-height: 50px;">&nbsp;</td>
-        </tr>
-
-        <tr>
-            <!-- ======= divider  ======= -->
-            <td align="center" class="divider">
-                <img height="1" width="590" border="0" style="display: block; width: 590px; height: 1px;" src="http://i.imgur.com/S6VbJRx.png" alt="" />
-            </td>
-
-        </tr>
-
-        <tr>
-            <td height="60" style="font-size: 60px; line-height: 60px;">&nbsp;</td>
-        </tr>
-
-    </table>
-
     <!-- ======= end divider ======= -->
 
     <!-- contact section -->
@@ -263,14 +226,6 @@
         <tr class="hide">
             <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
         </tr>
-        <tr>
-            <td height="40" style="font-size: 40px; line-height: 40px;">&nbsp;</td>
-        </tr>
-
-        <tr>
-            <td height="60" style="border-top: 1px solid #e0e0e0;font-size: 60px; line-height: 60px;">&nbsp;</td>
-        </tr>
-
         <tr>
             <td align="center">
                 <table border="0" align="center" width="590" cellpadding="0" cellspacing="0" class="container590 bg_color">
