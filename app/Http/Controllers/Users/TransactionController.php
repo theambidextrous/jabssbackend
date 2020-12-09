@@ -57,7 +57,8 @@ class TransactionController extends Controller
             ->where('status', true)
             ->skip(0)
             ->take(500)
-            ->orderBy('id', 'desc');
+            ->orderBy('id', 'desc')
+            ->get();
         if(is_null($f))
         {
             return response([
