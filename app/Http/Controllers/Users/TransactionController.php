@@ -289,7 +289,10 @@ class TransactionController extends Controller
     }
     public function getcards()
     {
-        $p = Pan::select(['mask', 'id', 'icon', 'isdefault'])->where('user', Auth::user()->id)->get();
+        $p = Pan::select(['mask', 'id', 'icon', 'isdefault'])
+            ->where('user', Auth::user()->id)
+            ->orderBy('isdefault', 'desc')
+            ->get();
         if(is_null($p))
         {
             return response([
