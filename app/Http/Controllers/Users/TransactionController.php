@@ -278,8 +278,20 @@ class TransactionController extends Controller
     {
         return;
     }
+    public function isdefaultcc($id)
+    {
+        return Pan::find($id)->isdefault;
+    }
     public function delcard($id)
     {
+        if( $this->isdefaultcc($id) )
+        {
+            return response([
+                'status' => 201,
+                'message' => "Card could not be deleted. Try gain later",
+                'payload' => [],
+            ], 403);
+        }
         Pan::find($id)->delete();
         return response([
             'status' => 200,
