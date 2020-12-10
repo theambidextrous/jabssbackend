@@ -361,7 +361,7 @@ class UserController extends Controller
             break;
             case 'tran':
                 Preference::where('user', $user)->first()->update([
-                    'tran' => $input['opt']
+                    'tran' => true
                 ]);
                 return response([
                     'status' => 200,
@@ -381,7 +381,7 @@ class UserController extends Controller
             break;
             case 'failed_tran':
                 Preference::where('user', $user)->first()->update([
-                    'failed_tran' => $input['opt']
+                    'failed_tran' => true
                 ]);
                 return response([
                     'status' => 200,
