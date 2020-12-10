@@ -220,14 +220,14 @@ class TransactionController extends Controller
             $input['cardtype'] = $type_meta[0];
             $input['icon'] = $type_meta[1];
             $input['user'] = Auth::user()->id;
-            if( $this->exists_card($input['pan']) )
-            {
-                return response([
-                    'status' => 201,
-                    'message' => "This card already exists",
-                    'errors' => [],
-                ], 403);
-            }
+            // if( $this->exists_card($input['pan']) )
+            // {
+            //     return response([
+            //         'status' => 201,
+            //         'message' => "This card already exists",
+            //         'errors' => [],
+            //     ], 403);
+            // }
             if( $input['isdefault'] )
             {
                 $this->set_default_false();
