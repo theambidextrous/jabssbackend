@@ -170,7 +170,7 @@
         <tr>
         <td align="center" valign="top" width="600">
         <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 300px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="300px" style="max-width: 300px;">
 
           <!-- start copy -->
           <tr>
