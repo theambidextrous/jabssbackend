@@ -193,7 +193,7 @@
                         <td align="center" style="color: #343434; font-size: 34px; font-family: Quicksand, Calibri, sans-serif; font-weight:900;letter-spacing: 3px; line-height: 35px;" class="main-header">
                             <br>
                             <div style="line-height: 35px">
-                            <span style="color: #063fb1;">Dear {{ $payload['name'] }}</span>
+                            <span style="color: #063fb1;">Hi {{ $payload['name'] }}</span>
                             </div>
                             <br>
                         </td>
@@ -202,8 +202,8 @@
                         <td align="center" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
 
                             <div style="line-height: 24px">
-                            You requested a receipt for your transaction.<br>
-                            Find attached below.
+                            Here is your record for money sent to {{ $payload['toname'] }}<br>
+                            Find attached.
                             </div>
                             <br><br>
                         </td>

@@ -170,7 +170,7 @@
         <tr>
         <td align="center" valign="top" width="600">
         <![endif]-->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 300px;">
 
           <!-- start copy -->
           <tr>
@@ -201,7 +201,7 @@
                 <tr>
                   <td align="left" width="40%" style="padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">Amount Received:</td>
                   <td align="left" width="60%" style="padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                  {{ number_format($payload['kes'],0) }} Ksh.</td>
+                  {{ number_format($payload['kes'],2) }} Ksh.</td>
                 </tr>
                 <tr>
                   <td align="left" width="40%" style="padding: 6px 12px;font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">Notes:</td>

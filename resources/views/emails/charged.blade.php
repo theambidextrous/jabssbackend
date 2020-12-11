@@ -205,9 +205,9 @@
                         <td align="center" style="color: #888888; font-size: 19px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
 
                             <div style="line-height: 24px">
-                            Dear {{ Auth::user()->fname }}, 
+                            Hi {{ Auth::user()->fname }}, 
                             <br>
-                            Your credit card {{ $transaction->mask }} has been debited ${{ $transaction->amount }}. The equivalent amount of Ksh.{{ $transaction->kes_amount }} has been sent to {{ $transaction->receiver }} .
+                            Your credit card {{ $transaction->mask }} has been debited ${{ number_format($transaction->amount, 2) }}. The equivalent amount of Ksh.{{ number_format($transaction->kes_amount, 2) }} has been sent to {{ $transaction->receiver }} .
                             </div>
                             <br><br>
                         </td>

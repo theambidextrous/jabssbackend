@@ -203,11 +203,10 @@
                     </tr>
                     <tr>
                         <td align="center" style="color: #888888; font-size: 19px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
-
                             <div style="line-height: 24px">
-                            Dear {{ $transaction->name }}, 
+                            Hi {{ $transaction->name }}, 
                             <br>
-                            Ksh.{{ $transaction->kes_amount }} has been delivered to {{ $transaction->receiver }}'s MPESA account. 
+                            Ksh.{{ number_format($transaction->kes_amount, 2) }} has been delivered to {{ $transaction->receiver }}'s MPESA account. 
                             <br>
                             Reference code: {{ $transaction->mpesa_code }}
                             </div>
@@ -251,7 +250,7 @@
                                     <td height="25" style="font-size: 25px; line-height: 25px;">&nbsp;</td>
                                 </tr>
 
-                                <tr>
+                                <tr>ß
                                     <td align="left" style="color: #888888; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 23px;" class="text_color">
                                         <div style="color: #333333; font-size: 14px; font-family: 'Work Sans', Calibri, sans-serif; font-weight: 600; mso-line-height-rule: exactly; line-height: 23px;">
 

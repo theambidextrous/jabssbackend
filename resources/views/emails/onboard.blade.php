@@ -200,11 +200,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="center" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
+                        <td align="left" style="color: #888888; font-size: 16px; font-family: 'Work Sans', Calibri, sans-serif; line-height: 24px;">
 
                             <div style="line-height: 24px">
                             We are grateful to have you on board, {{ $payload }} !!!<br>
-                            Now, let us support our families
+                            Now, let us support our families<br><br>
+
+                            Cheers,<br>
+                            JabssApp
                             </div>
                             <br><br>
                         </td>

@@ -358,6 +358,7 @@ class TransactionController extends Controller
             ], 403);
         }
         $input = $request->all();
+        $mpesa_conf_code = 'MJ56H876IL1';
         $input['amount_usd'] = trim($input['amount_usd']);
         if( round(floatval($input['amount_usd'])) < 1)
         {
@@ -438,6 +439,7 @@ class TransactionController extends Controller
                 'int_payload_string' => $mpesa_api_res,
                 'ext_payload_string' => $mpesa_api_res,
                 'receiver_name' => $receiver_named,
+                'external_ref' => $mpesa_conf_code,
                 'status' => true,
             ];
             $mpesa_id = Mpesa::create($new_mpesa)->id;
@@ -471,7 +473,7 @@ class TransactionController extends Controller
                 'name' => Auth::user()->fname,
                 'kes_amount' => $inferior_amount,
                 'receiver' => $receiver,
-                'mpesa_code' => 'MJ56H876IL1'
+                'mpesa_code' => $mpesa_conf_code,
             ]))));
             return response([
                 'status' => 200,
