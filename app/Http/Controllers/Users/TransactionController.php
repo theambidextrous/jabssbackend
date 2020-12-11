@@ -462,6 +462,7 @@ class TransactionController extends Controller
                 'inf_forex_charges' => $i_earnings,
                 'bank_tran_ref' => $bank_int_ref,
                 'mpesa_tran_ref' => $mpesa_int_ref,
+                'status' => true,
             ];
             $transaction_id = Transaction::create($new_transaction)->id;
             if( !strlen($transaction_id) )
